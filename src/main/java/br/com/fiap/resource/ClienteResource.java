@@ -1,7 +1,7 @@
 package br.com.fiap.resource;
 
-import br.com.fiap.bo.AdminBO;
-import br.com.fiap.to.AdminTO;
+import br.com.fiap.bo.ClienteBO;
+import br.com.fiap.to.ClienteTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -9,15 +9,15 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
 
-@Path("/smartenergy/admin")
-public class AdminResource {
+@Path("/smartenergy/cliente")
+public class ClienteResource {
 
-    private AdminBO adminBO = new AdminBO();
+    private ClienteBO clienteBO = new ClienteBO();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        ArrayList<AdminTO> resultado = adminBO.findAll();
+        ArrayList<ClienteTO> resultado = clienteBO.findAll();
         Response.ResponseBuilder response = null;
         if (resultado != null){
             response = Response.ok(); //codigo 200 - OK
@@ -29,10 +29,10 @@ public class AdminResource {
     }
 
     @GET
-    @Path("/{cpf_admin}")
+    @Path("/{cpf_cliente}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findByCodigo(@PathParam("cpf_admin") String cpf_admin){
-        AdminTO resultado = adminBO.findByCodigo(cpf_admin);
+    public Response findByCodigo(@PathParam("cpf_cliente") String cpf_cliente){
+        ClienteTO resultado = clienteBO.findByCodigo(cpf_cliente);
         Response.ResponseBuilder response = null;
         if (resultado != null){
             response = Response.ok(); // codigo 200 - ok
@@ -45,8 +45,8 @@ public class AdminResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(@Valid AdminTO admin){
-        AdminTO resultado = adminBO.save(admin);
+    public Response save(@Valid ClienteTO cliente){
+        ClienteTO resultado = clienteBO.save(cliente);
         Response.ResponseBuilder response = null;
         if (resultado != null){
             response = Response.created(null); // codigo 201 - create
@@ -58,11 +58,11 @@ public class AdminResource {
     }
 
     @PUT
-    @Path("{/cpf_admin}")
+    @Path("{/cpf_cliente}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@Valid AdminTO admin, @PathParam("cpf_admin") String cpf_admin){
-        admin.setCpf_admin(cpf_admin);
-        AdminTO resultado = adminBO.update(admin);
+    public Response update(@Valid ClienteTO cliente, @PathParam("cpf_cliente") String cpf_cliente){
+        cliente.setCpf_cliente(cpf_cliente);
+        ClienteTO resultado = clienteBO.update(cliente);
         Response.ResponseBuilder response = null;
         if (resultado != null){
             response = Response.created(null); // codigo 201 - create
@@ -74,15 +74,14 @@ public class AdminResource {
     }
 
     @DELETE
-    @Path("{/cpf_admin}")
-    public Response delete(@PathParam("cpf_admin") String cpf_admin){
+    @Path("{/cpf_cliente}")
+    public Response delete(@PathParam("cpf_cliente") String cpf_cliente){
         Response.ResponseBuilder response = null;
-        if (adminBO.delete(cpf_admin)){
+        if (clienteBO.delete(cpf_cliente)){
             response = Response.status(204); // codigo 204 - no content
         } else {
             response = Response.status(404); // codigo 404 - not found
         }
         return response.build();
     }
-
 }
