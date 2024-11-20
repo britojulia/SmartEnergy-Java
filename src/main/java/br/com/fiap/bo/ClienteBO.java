@@ -33,6 +33,24 @@ public class ClienteBO {
             return null;
         }
 
+         //valida se o telefone possui no minimo 10 digitcos com ddd (telefone fixo ou celular)
+        if (cliente.getTelefone() == null || String.valueOf(cliente.getTelefone()).length() < 10) {
+            System.out.println("Formato de telefone inválido, deve conter pelo menos 10 dígitos com DDD.");
+            return null;
+        }
+
+        //valida se o endereço é valido, e nao vazio ou uma letra
+        if (cliente.getEndereco() == null || cliente.getEndereco().length() < 4) {
+            System.out.println("O endereço é curto demais ou inválido.");
+            return null;
+        }
+
+        //valida se o cliente é maior de idade
+        if (!cliente.calculaIdade()) {
+            System.out.println("Cliente deve ser maior de idade para ser cadastrado.");
+            return null;
+        }
+
         return clienteDAO.save(cliente);
     }
 
@@ -49,6 +67,24 @@ public class ClienteBO {
         //valida se o email é do formato aaaa@aa.com
         if (cliente.getEmail() == null || !cliente.getEmail().matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$")) {
             System.out.println("Formato de email inválido.");
+            return null;
+        }
+
+        //valida se o telefone possui no minimo 10 digitcos com ddd (telefone fixo ou celular)
+        if (cliente.getTelefone() == null || String.valueOf(cliente.getTelefone()).length() < 10) {
+            System.out.println("Formato de telefone inválido, deve conter pelo menos 10 dígitos com DDD.");
+            return null;
+        }
+
+        //valida se o endereço é valido, e nao vazio ou uma letra
+        if (cliente.getEndereco() == null || cliente.getEndereco().length() < 4) {
+            System.out.println("O endereço é curto demais ou inválido.");
+            return null;
+        }
+
+        //valida se o cliente é maior de idade
+        if (!cliente.calculaIdade()) {
+            System.out.println("Cliente deve ser maior de idade para ser cadastrado.");
             return null;
         }
 

@@ -8,12 +8,17 @@ import java.time.LocalDate;
 
 public class ClienteTO {
 
-    @NotBlank private String cpf_cliente;
-    @NotBlank private String nome;
-    @NotBlank private String email;
-    @NotBlank private String endereco;
+    @NotBlank
+    private String cpf_cliente;
+    @NotBlank
+    private String nome;
+    @NotBlank
+    private String email;
+    @NotBlank
+    private String endereco;
     private Long telefone;
-    @PastOrPresent private LocalDate data_nasc;
+    @PastOrPresent
+    private LocalDate data_nasc;
 
     public ClienteTO() {
     }
@@ -74,4 +79,13 @@ public class ClienteTO {
     public void setData_nasc(@PastOrPresent LocalDate data_nasc) {
         this.data_nasc = data_nasc;
     }
+
+    public boolean calculaIdade() {
+        if (data_nasc == null) {
+            return false;
+        }
+        int idade = LocalDate.now().getYear() - data_nasc.getYear();
+        return idade >= 18;
+    }
 }
+
