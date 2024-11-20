@@ -72,4 +72,38 @@ public class EletroTO {
     public void setCpf_cliente(@NotBlank String cpf_cliente) {
         this.cpf_cliente = cpf_cliente;
     }
+
+    public boolean eficienciaEnergeticaValida() {
+        return eficiencia_energetica != null && (eficiencia_energetica.equals("A+++")
+                || eficiencia_energetica.equals("A++")
+                || eficiencia_energetica.equals("A+")
+                || eficiencia_energetica.equals("A")
+                || eficiencia_energetica.equals("B")
+                || eficiencia_energetica.equals("C")
+                || eficiencia_energetica.equals("D")
+                || eficiencia_energetica.equals("E")
+                || eficiencia_energetica.equals("F")
+                || eficiencia_energetica.equals("G"));
+    }
+
+    public double calcularValorGastoMes(long potencia, int horasConsumoDiario, int diasUsoMensal) {
+        double precoKWh = 0.656;
+        double consumoKWh = (potencia * horasConsumoDiario * diasUsoMensal) / 1000.0;
+
+        double valorGasto = consumoKWh * precoKWh;
+
+        return valorGasto;
+    }
+
+    public double calcularValorGastoDia(long potencia, int horasConsumoDiario) {
+        double precoKWh = 0.656;
+        double consumoKWhDia = (potencia * horasConsumoDiario) / 1000.0;
+
+        double valorGastoDia = consumoKWhDia * precoKWh;
+
+        return valorGastoDia;
+    }
+
+
+
 }

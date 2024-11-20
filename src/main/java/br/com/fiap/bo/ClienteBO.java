@@ -57,7 +57,6 @@ public class ClienteBO {
     public ClienteTO update(ClienteTO cliente){
         clienteDAO = new ClienteDAO();
 
-
         //valida se o cpf do cliente possui 11 digitos
         if (cliente.getCpf_cliente() == null || cliente.getCpf_cliente().length() != 11) {
             System.out.println("CPF inválido. Deve conter 11 dígitos.");
