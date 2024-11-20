@@ -1,10 +1,12 @@
 package br.com.fiap.to;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class AdminTO {
-    private String cpf_admin;
-    private String nome;
-    private String email;
-    private String senha;
+    @NotBlank private String cpf_admin;
+    @NotBlank private String nome;
+    @NotBlank private String email;
+    @NotBlank private String senha;
 
     public AdminTO() {
     }

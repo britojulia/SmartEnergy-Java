@@ -1,16 +1,19 @@
 package br.com.fiap.to;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+
 import java.time.LocalDate;
 
 public class ClienteTO {
 
-    private String cpf_cliente;
-    private String nome;
-    private String email;
-    private String endereco;
+    @NotBlank private String cpf_cliente;
+    @NotBlank private String nome;
+    @NotBlank private String email;
+    @NotBlank private String endereco;
     private Long telefone;
-    private LocalDate data_nasc;
+    @PastOrPresent private LocalDate data_nasc;
 
     public ClienteTO() {
     }
@@ -24,35 +27,35 @@ public class ClienteTO {
         this.data_nasc = data_nasc;
     }
 
-    public String getCpf_cliente() {
+    public @NotBlank String getCpf_cliente() {
         return cpf_cliente;
     }
 
-    public void setCpf_cliente(String cpf_cliente) {
+    public void setCpf_cliente(@NotBlank String cpf_cliente) {
         this.cpf_cliente = cpf_cliente;
     }
 
-    public String getNome() {
+    public @NotBlank String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(@NotBlank String nome) {
         this.nome = nome;
     }
 
-    public String getEmail() {
+    public @NotBlank String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(@NotBlank String email) {
         this.email = email;
     }
 
-    public String getEndereco() {
+    public @NotBlank String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(@NotBlank String endereco) {
         this.endereco = endereco;
     }
 
@@ -64,11 +67,11 @@ public class ClienteTO {
         this.telefone = telefone;
     }
 
-    public LocalDate getData_nasc() {
+    public @PastOrPresent LocalDate getData_nasc() {
         return data_nasc;
     }
 
-    public void setData_nasc(LocalDate data_nasc) {
+    public void setData_nasc(@PastOrPresent LocalDate data_nasc) {
         this.data_nasc = data_nasc;
     }
 }

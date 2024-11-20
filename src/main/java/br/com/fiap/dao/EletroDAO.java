@@ -2,7 +2,6 @@ package br.com.fiap.dao;
 
 import br.com.fiap.to.EletroTO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,7 @@ public class EletroDAO extends Repository{
 
     public ArrayList<EletroTO> findAll(){
         ArrayList<EletroTO> eletros = new ArrayList<EletroTO>();
-        String sql = "select id_eletro, eletrodomestico, marca, efeciencia_enegertica, consumo_energetico, cpf_cliente from eletro order by id_eletro";
+        String sql = "select id_eletro, eletrodomestico, marca, efeciencia_enegertica, potencia, cpf_cliente from eletro order by id_eletro";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
@@ -22,7 +21,7 @@ public class EletroDAO extends Repository{
                     eletro.setEletrodomestico(rs.getString("eletrodomestico"));
                     eletro.setMarca(rs.getString("marca"));
                     eletro.setEficiencia_energetica(rs.getString("eficiencia_energetica"));
-                    eletro.setConsumo_energetico(rs.getLong("consumo_energetico"));
+                    eletro.setPotencia(rs.getLong("potencia"));
                     eletro.setCpf_cliente(rs.getString("cpf_cliente"));
                     eletros.add(eletro);
                 }
@@ -39,7 +38,7 @@ public class EletroDAO extends Repository{
 
     public EletroTO findByCodigo(Long id_eletro) {
         EletroTO eletro = new EletroTO();
-        String sql = "select id_eletro, eletrodomestico, marca, efeciencia_enegertica, consumo_energetico, cpf_cliente from eletro  where id_chamado = ?";
+        String sql = "select id_eletro, eletrodomestico, marca, efeciencia_enegertica, potencia, cpf_cliente from eletro  where id_chamado = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setLong(1, id_eletro);
             ResultSet rs = ps.executeQuery();
@@ -48,7 +47,7 @@ public class EletroDAO extends Repository{
                 eletro.setEletrodomestico(rs.getString("eletrodomestico"));
                 eletro.setMarca(rs.getString("marca"));
                 eletro.setEficiencia_energetica(rs.getString("eficiencia_energetica"));
-                eletro.setConsumo_energetico(rs.getLong("consumo_energetico"));
+                eletro.setPotencia(rs.getLong("potencia"));
                 eletro.setCpf_cliente(rs.getString("cpf_cliente"));
             } else {
                 return null;
@@ -62,13 +61,13 @@ public class EletroDAO extends Repository{
     }
 
     public EletroTO save(EletroTO eletro) {
-        String sql = "insert into eletro (eletrodomestico, marca, eficiencia_energetica, consumo_energetico, cpf_cliente) values( ?, ?, ?, ?, ?)";
+        String sql = "insert into eletro (eletrodomestico, marca, eficiencia_energetica, potencia, cpf_cliente) values( ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setString(1, eletro.getEletrodomestico());
             ps.setString(2, eletro.getMarca());
             ps.setString(3, eletro.getEficiencia_energetica());
-            ps.setLong(4, eletro.getConsumo_energetico());
-            ps.setString(6, eletro.getCpf_cliente());
+            ps.setLong(4, eletro.getPotencia());
+            ps.setString(5, eletro.getCpf_cliente());
             if (ps.executeUpdate() > 0) {
                 return eletro;
             } else {
@@ -96,13 +95,14 @@ public class EletroDAO extends Repository{
     }
 
     public EletroTO update(EletroTO eletro){
-        String sql = "update eletro set eletrodomestico=?, marca=?, eficiencia_energetica=?, consumo_energetico=?, cpf_cliente=? where id_eletro=?";
+        String sql = "update eletro set eletrodomestico=?, marca=?, eficiencia_energetica=?, potencia=?, cpf_cliente=? where id_eletro=?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)){
             ps.setString(1, eletro.getEletrodomestico());
             ps.setString(2, eletro.getMarca());
             ps.setString(3, eletro.getEficiencia_energetica());
-            ps.setLong(4, eletro.getConsumo_energetico());
+            ps.setLong(4, eletro.getPotencia());
             ps.setString(5, eletro.getCpf_cliente());
+            ps.setLong(5, eletro.getId_eletro());
             if (ps.executeUpdate() > 0){
                 return eletro;
             } else {

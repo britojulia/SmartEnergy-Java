@@ -1,39 +1,43 @@
 package br.com.fiap.to;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+
 public class EletroTO {
 
-    private Long id_eletro;
-    private String eletrodomestico;
+    @NotNull private Long id_eletro;
+    @NotBlank private String eletrodomestico;
     private String marca;
     private String eficiencia_energetica;
-    private Long consumo_energetico;
-    private String cpf_cliente;
+    @PositiveOrZero private Long potencia;
+    @NotBlank private String cpf_cliente;
 
     public EletroTO() {
     }
 
-    public EletroTO(Long id_eletro, String eletrodomestico, String marca, String eficiencia_energetica, Long consumo_energetico, String cpf_cliente) {
+    public EletroTO(Long id_eletro, String eletrodomestico, String marca, String eficiencia_energetica, Long potencia, String cpf_cliente) {
         this.id_eletro = id_eletro;
         this.eletrodomestico = eletrodomestico;
         this.marca = marca;
         this.eficiencia_energetica = eficiencia_energetica;
-        this.consumo_energetico = consumo_energetico;
+        this.potencia = potencia;
         this.cpf_cliente = cpf_cliente;
     }
 
-    public Long getId_eletro() {
+    public @NotNull Long getId_eletro() {
         return id_eletro;
     }
 
-    public void setId_eletro(Long id_eletro) {
+    public void setId_eletro(@NotNull Long id_eletro) {
         this.id_eletro = id_eletro;
     }
 
-    public String getEletrodomestico() {
+    public @NotBlank String getEletrodomestico() {
         return eletrodomestico;
     }
 
-    public void setEletrodomestico(String eletrodomestico) {
+    public void setEletrodomestico(@NotBlank String eletrodomestico) {
         this.eletrodomestico = eletrodomestico;
     }
 
@@ -53,19 +57,19 @@ public class EletroTO {
         this.eficiencia_energetica = eficiencia_energetica;
     }
 
-    public Long getConsumo_energetico() {
-        return consumo_energetico;
+    public @PositiveOrZero Long getPotencia() {
+        return potencia;
     }
 
-    public void setConsumo_energetico(Long consumo_energetico) {
-        this.consumo_energetico = consumo_energetico;
+    public void setPotencia(@PositiveOrZero Long potencia) {
+        this.potencia = potencia;
     }
 
-    public String getCpf_cliente() {
+    public @NotBlank String getCpf_cliente() {
         return cpf_cliente;
     }
 
-    public void setCpf_cliente(String cpf_cliente) {
+    public void setCpf_cliente(@NotBlank String cpf_cliente) {
         this.cpf_cliente = cpf_cliente;
     }
 }
