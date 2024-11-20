@@ -2,6 +2,7 @@ package br.com.fiap.to;
 
 public class EletroTO {
 
+    private Long id_eletro;
     private String eletrodomestico;
     private String marca;
     private String eficiencia_energetica;
@@ -11,12 +12,21 @@ public class EletroTO {
     public EletroTO() {
     }
 
-    public EletroTO(String eletrodomestico, String marca, String eficiencia_energetica, Long consumo_energetico, String cpf_cliente) {
+    public EletroTO(Long id_eletro, String eletrodomestico, String marca, String eficiencia_energetica, Long consumo_energetico, String cpf_cliente) {
+        this.id_eletro = id_eletro;
         this.eletrodomestico = eletrodomestico;
         this.marca = marca;
         this.eficiencia_energetica = eficiencia_energetica;
         this.consumo_energetico = consumo_energetico;
         this.cpf_cliente = cpf_cliente;
+    }
+
+    public Long getId_eletro() {
+        return id_eletro;
+    }
+
+    public void setId_eletro(Long id_eletro) {
+        this.id_eletro = id_eletro;
     }
 
     public String getEletrodomestico() {
