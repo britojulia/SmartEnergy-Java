@@ -11,7 +11,7 @@ public class EletroDAO extends Repository{
 
     public ArrayList<EletroTO> findAll(){
         ArrayList<EletroTO> eletros = new ArrayList<EletroTO>();
-        String sql = "select id_eletro, eletrodomestico, marca, efeciencia_enegertica, potencia, cpf_cliente from eletro order by id_eletro";
+        String sql = "select id_eletro, eletrodomestico, marca, eficiencia_energetica, potencia, cpf_cliente from eletro order by id_eletro";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
@@ -38,7 +38,7 @@ public class EletroDAO extends Repository{
 
     public EletroTO findByCodigo(Long id_eletro) {
         EletroTO eletro = new EletroTO();
-        String sql = "select id_eletro, eletrodomestico, marca, efeciencia_enegertica, potencia, cpf_cliente from eletro  where id_chamado = ?";
+        String sql = "select id_eletro, eletrodomestico, marca, eficiencia_enegertica, potencia, cpf_cliente from eletro  where id_chamado = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setLong(1, id_eletro);
             ResultSet rs = ps.executeQuery();

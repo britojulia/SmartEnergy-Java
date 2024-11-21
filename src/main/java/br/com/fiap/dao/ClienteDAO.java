@@ -25,7 +25,7 @@ public class ClienteDAO extends Repository{
                     cliente.setEmail(rs.getString("email"));
                     cliente.setEndereco(rs.getString("endereco"));
                     cliente.setTelefone(rs.getLong("telefone"));
-                    cliente.setData_nasc(LocalDate.parse(rs.getString("data_nasc")));
+                    cliente.setData_nasc(rs.getDate("data_nasc").toLocalDate());
                     clientes.add(cliente);
                 }
             } else {
@@ -52,7 +52,7 @@ public class ClienteDAO extends Repository{
                 cliente.setEmail(rs.getString("email"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setTelefone(rs.getLong("telefone"));
-                cliente.setData_nasc(LocalDate.parse(rs.getString("data_nasc")));
+                cliente.setData_nasc(rs.getDate("data_nasc").toLocalDate());
             }
         } catch (SQLException e) {
             System.out.println("Erro na consulta: " + e.getMessage());
