@@ -98,7 +98,7 @@ public class ClienteDAO extends Repository{
     }
 
     public ClienteTO update(ClienteTO cliente){
-        String sql = "update cpf_cliente set nome=?, email=?, endereco=?, telefone=?, data_nasc=? where cpf_cliente=?";
+        String sql = "update cliente_energy cpf_cliente set nome=?, email=?, endereco=?, telefone=?, data_nasc=? where cpf_cliente=?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)){
             ps.setString(1, cliente.getNome());
             ps.setString(2, cliente.getEmail());;

@@ -1,12 +1,11 @@
 package br.com.fiap.to;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
 public class EletroTO {
 
-    @NotNull private Long id_eletro;
+    private Long id_eletro;
     @NotBlank private String eletrodomestico;
     private String marca;
     private String eficiencia_energetica;
@@ -25,11 +24,11 @@ public class EletroTO {
         this.cpf_cliente = cpf_cliente;
     }
 
-    public @NotNull Long getId_eletro() {
+    public Long getId_eletro() {
         return id_eletro;
     }
 
-    public void setId_eletro(@NotNull Long id_eletro) {
+    public void setId_eletro(Long id_eletro) {
         this.id_eletro = id_eletro;
     }
 

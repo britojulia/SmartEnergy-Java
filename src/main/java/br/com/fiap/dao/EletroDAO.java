@@ -1,7 +1,9 @@
 package br.com.fiap.dao;
 
+import br.com.fiap.to.ClienteTO;
 import br.com.fiap.to.EletroTO;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +40,7 @@ public class EletroDAO extends Repository{
 
     public EletroTO findByCodigo(Long id_eletro) {
         EletroTO eletro = new EletroTO();
-        String sql = "select id_eletro, eletrodomestico, marca, eficiencia_enegertica, potencia, cpf_cliente from eletro  where id_chamado = ?";
+        String sql = "select id_eletro, eletrodomestico, marca, eficiencia_energetica, potencia, cpf_cliente from eletro  where id_eletro = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setLong(1, id_eletro);
             ResultSet rs = ps.executeQuery();
@@ -61,7 +63,7 @@ public class EletroDAO extends Repository{
     }
 
     public EletroTO save(EletroTO eletro) {
-        String sql = "insert into eletro (eletrodomestico, marca, eficiencia_energetica, potencia, cpf_cliente) values( ?, ?, ?, ?, ?)";
+        String sql = "insert into eletro ( eletrodomestico, marca, eficiencia_energetica, potencia, cpf_cliente) values(?, ?, ?, ?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setString(1, eletro.getEletrodomestico());
             ps.setString(2, eletro.getMarca());
@@ -102,7 +104,7 @@ public class EletroDAO extends Repository{
             ps.setString(3, eletro.getEficiencia_energetica());
             ps.setLong(4, eletro.getPotencia());
             ps.setString(5, eletro.getCpf_cliente());
-            ps.setLong(5, eletro.getId_eletro());
+            ps.setLong(6, eletro.getId_eletro());
             if (ps.executeUpdate() > 0){
                 return eletro;
             } else {

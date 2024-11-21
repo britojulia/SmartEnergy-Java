@@ -33,7 +33,6 @@ public class EletroBO {
             return null;
         }
 
-
         // Valida se a eficiência energética é válida
         if (!eletro.eficienciaEnergeticaValida()) {
             System.out.println("Eficiência energética inválida. Deve A+++, A++, A+, A, B, C, D, E, F ou G.");
@@ -51,7 +50,6 @@ public class EletroBO {
             System.out.println("CPF inválido. Deve conter 11 dígitos.");
             return null;
         }
-
         return eletroDAO.save(eletro);
     }
 

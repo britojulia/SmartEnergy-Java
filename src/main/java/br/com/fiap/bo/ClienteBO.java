@@ -50,7 +50,6 @@ public class ClienteBO {
             System.out.println("Cliente deve ser maior de idade para ser cadastrado.");
             return null;
         }
-
         return clienteDAO.save(cliente);
     }
 
