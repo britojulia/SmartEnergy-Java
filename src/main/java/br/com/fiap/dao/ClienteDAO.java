@@ -2,6 +2,7 @@ package br.com.fiap.dao;
 
 import br.com.fiap.to.AdminTO;
 import br.com.fiap.to.ClienteTO;
+import br.com.fiap.to.EletroTO;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -46,13 +47,14 @@ public class ClienteDAO extends Repository{
             ps.setString(1, cpf_cliente);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                cliente = new ClienteTO();
                 cliente.setCpf_cliente(rs.getString("cpf_cliente"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setTelefone(rs.getLong("telefone"));
                 cliente.setData_nasc(rs.getDate("data_nasc").toLocalDate());
+            }  else {
+                return null;
             }
         } catch (SQLException e) {
             System.out.println("Erro na consulta: " + e.getMessage());
@@ -61,6 +63,7 @@ public class ClienteDAO extends Repository{
         }
         return cliente;
     }
+
 
     public ClienteTO save(ClienteTO cliente) {
         String sql = "insert into cliente_energy ( cpf_cliente, nome, email, endereco, telefone, data_nasc) values(?, ?, ?, ?, ?, ?)";

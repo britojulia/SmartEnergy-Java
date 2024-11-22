@@ -41,11 +41,12 @@ public class AdminDAO extends Repository {
             ps.setString(1, cpf_admin);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                admin = new AdminTO();
                 admin.setCpf_admin(rs.getString("cpf_admin"));
                 admin.setNome(rs.getString("nome"));
                 admin.setEmail(rs.getString("email"));
                 admin.setSenha(rs.getString("senha"));
+            }  else {
+                return null;
             }
         } catch (SQLException e) {
             System.out.println("Erro na consulta: " + e.getMessage());

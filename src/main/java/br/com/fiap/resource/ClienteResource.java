@@ -2,6 +2,7 @@ package br.com.fiap.resource;
 
 import br.com.fiap.bo.ClienteBO;
 import br.com.fiap.to.ClienteTO;
+import br.com.fiap.to.EletroTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
